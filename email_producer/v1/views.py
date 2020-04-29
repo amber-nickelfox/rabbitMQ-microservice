@@ -10,7 +10,6 @@ def index(request):
     :return:
     """
     email_context = {
-        "sender": "test@gmail.com",
         "receiver": "test@nickelfox.com",
         "message": "Hello world"
     }

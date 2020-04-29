@@ -7,14 +7,14 @@ class SendEmail:
     """
     send email as a background process
     """
-    def __init__(self, sender, receiver, message):
+    def __init__(self, receiver, message):
         """
         send email
         :param sender: sender email
         :param receiver: receiver email
         :param message: message plain text for now
         """
-        self.sender = sender
+        self.sender = "test@gmail.com"
         self.receiver = receiver
         self.message = message
         self.host = "smtp.gmail.com"
@@ -61,7 +61,7 @@ class RabbitMQ:
         :return:
         """
         data = json.loads(body)
-        SendEmail(data['sender'], data['receiver'], data['message']).send_email()
+        SendEmail(data['receiver'], data['message']).send_email()
         print("Email sent")
 
     def create_connection(self):
