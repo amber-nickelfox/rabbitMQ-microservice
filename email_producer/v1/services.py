@@ -1,7 +1,8 @@
 import pika
+import json
 
 
-class RabbitMQ:
+class SendEmailRabbitMQ:
     """
     """
     def __init__(self, message):
@@ -29,9 +30,9 @@ class RabbitMQ:
         channel.confirm_delivery()
         try:
             print("Here to publish message")
-            channel.basic_publish(exchange=self.exchange, routing_key=self.routing_key, body=self.message,
+            channel.basic_publish(exchange=self.exchange, routing_key=self.routing_key, body=json.dumps(self.message),
                                   properties=pika.BasicProperties(delivery_mode=2))
             print("Message sent")
-        except:
-            print("Failed to send message")
+        except Exception as ex:
+            print("Failed to send message", ex)
         connection.close()
